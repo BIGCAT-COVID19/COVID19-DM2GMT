@@ -6,6 +6,7 @@
 library(here)
 setwd(paste0(here(),"/DiseaseMapGMTFile"))
 
+release <- "April2021"
 
 # RETRIEVE PATHWAYS AND GENE IDENTIFIERS FROM COVID19 DISEASE MAP
 source("https://git-r3lab.uni.lu/covid/models/-/raw/master/Integration/MINERVA_access/minerva_access_functions.R")
@@ -21,7 +22,7 @@ names(mnv_refs) <- paste0("MINERVA ", names(mnv_refs))
 for (i in 1:length(mnv_refs)) {
   name <- names(mnv_refs[i])
   data <- data.frame(matrix(ncol = 1, nrow = 0))
-  data[1,1] <- paste0(name,"%MINERVA_April2021%",name,"%Homo sapiens")
+  data[1,1] <- paste0(name,"%MINERVA_",release,"%",name,"%Homo sapiens")
   data[2,1] <- "MINERVA_COVID19"
   x <- 3
   for(j in 1:length(mnv_refs[[i]])) {
@@ -33,6 +34,6 @@ for (i in 1:length(mnv_refs)) {
   }
   if(dim(data)[1] > 2) {
     data_t <- t(data)
-    write.table(data_t, "COVID19_DiseaseMap_April2021.gmt",row.names = F, col.names = F, append = T, sep="\t", quote=F)
+    write.table(data_t, paste0("output/COVID19_DiseaseMap_",release,".gmt"),row.names = F, col.names = F, append = T, sep="\t", quote=F)
   }
 }
