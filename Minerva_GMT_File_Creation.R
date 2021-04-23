@@ -1,6 +1,7 @@
 # Create COVID19 Disease Map GMT file
 # Author: mkutmon
-# Update: 2021-04-16
+# Update: 2021-04-23
+# Creates a GMT file with Entrez Gene identifiers from the COVID19 disease map in Minerva
 
 library(here)
 setwd(paste0(here(),"/DiseaseMapGMTFile"))
